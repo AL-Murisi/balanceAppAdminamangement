@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 // This is your service role key (NEVER expose this on the client-side!)
 
-export async function GET(req: Request) {
+export async function GET() {
   try {
     // Optional: Read query params if needed
 
@@ -20,11 +20,14 @@ export async function GET(req: Request) {
     }
 
     return NextResponse.json({ topup: data }, { status: 200 });
-  } catch (err: any) {
-    return NextResponse.json(
-      { error: err.message || "Internal error" },
-      { status: 500 }
-    );
+  } catch (err: unknown) {
+    const message =
+      err instanceof Error ? err.message : "An unknown error occurred";
+
+    return new Response(JSON.stringify({ error: message }), {
+      headers: { "Content-Type": "application/json" },
+      status: 500,
+    });
   }
 }
 
@@ -73,11 +76,13 @@ export async function POST(req: Request) {
       { message: "User status updated successfully", topup: data[0] },
       { status: 200 }
     );
-  } catch (err: any) {
-    console.error("Internal server error during user status update:", err);
-    return NextResponse.json(
-      { error: err.message || "Internal server error" },
-      { status: 500 }
-    );
+  } catch (err: unknown) {
+    const message =
+      err instanceof Error ? err.message : "An unknown error occurred";
+
+    return new Response(JSON.stringify({ error: message }), {
+      headers: { "Content-Type": "application/json" },
+      status: 500,
+    });
   }
 }

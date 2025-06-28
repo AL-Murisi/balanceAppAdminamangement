@@ -4,10 +4,8 @@ import {
   CreditCardIcon,
   LogOutIcon,
   MoreVerticalIcon,
-  Route,
   UserCircleIcon,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -25,11 +23,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { supabase } from "@/lib/supabase/client";
-import React, { useState } from "react";
-import { Button } from "./ui/button";
-import { Tables } from "@/types/databasetyps";
 import Session from "@/lib/session";
-type Profile = Tables<"profiles">;
 export function NavUser({
   user,
 }: {
@@ -40,13 +34,9 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
-  const [informationn, setusrname] = useState<Profile>();
-  const [avatarurl, setavatarurl] = useState<Profile>();
-  const router = useRouter();
   const { userid } = Session();
   const signOut = async () => {
     await supabase.auth.signOut();
-  
   };
 
   return (

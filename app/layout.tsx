@@ -1,13 +1,7 @@
-import type { Metadata } from "next";
-
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "sonner";
-import { cn } from "@/lib/utils";
-import { Inter } from "next/font/google";
-import { NavigationMenuDemo } from "@/components/app-sidebar";
 import React from "react";
-import ClientProvider from "@/components/clientProvider";
 //className={cn(inter.className)}
 // export const metadata: Metadata = {
 //   title: "balance app",

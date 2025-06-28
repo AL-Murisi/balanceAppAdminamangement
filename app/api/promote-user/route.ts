@@ -4,15 +4,8 @@ import { supabase } from "@/lib/supabase/client";
 // import { createServerClient } from '@supabase/auth-helpers-nextjs';
 // npm install @supabase/auth-helpers-nextjs
 import { NextResponse } from "next/server";
-type NewUsers = {
-  id: string;
-  status: "Rejected" | "pending" | "Approved";
-  email: string;
-  business_name: string;
-  phone_number: string;
-  location: string;
-};
-export async function GET(req: Request) {
+
+export async function GET() {
   try {
     const { data, error } = await supabase
       .from("sub_vendors")
@@ -26,11 +19,14 @@ export async function GET(req: Request) {
     }
 
     return NextResponse.json({ users: data }, { status: 200 });
-  } catch (err: any) {
-    return NextResponse.json(
-      { error: err.message || "Internal error" },
-      { status: 500 }
-    );
+  } catch (err: unknown) {
+    const message =
+      err instanceof Error ? err.message : "An unknown error occurred";
+
+    return new Response(JSON.stringify({ error: message }), {
+      headers: { "Content-Type": "application/json" },
+      status: 500,
+    });
   }
 }
 interface UpdateUserStatusRequestBody {
@@ -82,11 +78,13 @@ export async function POST(req: Request) {
       { message: "User status updated successfully", user: data[0] },
       { status: 200 }
     );
-  } catch (err: any) {
-    console.error("Internal server error during user status update:", err);
-    return NextResponse.json(
-      { error: err.message || "Internal server error" },
-      { status: 500 }
-    );
+  } catch (err: unknown) {
+    const message =
+      err instanceof Error ? err.message : "An unknown error occurred";
+
+    return new Response(JSON.stringify({ error: message }), {
+      headers: { "Content-Type": "application/json" },
+      status: 500,
+    });
   }
 }

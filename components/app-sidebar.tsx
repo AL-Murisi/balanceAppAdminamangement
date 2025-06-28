@@ -86,7 +86,6 @@ import {
   CreditCardIcon,
   LogOutIcon,
   MenuIcon,
-  MoreVerticalIcon,
   UserCircleIcon,
   XIcon,
 } from "lucide-react";

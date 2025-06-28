@@ -2,7 +2,6 @@
 "use server";
 
 import { createClient } from "@/lib/supabase/server";
-import { redirect } from "next/navigation";
 // import { useState } from "react"; // <-- Remove this line: useState is for client components
 
 // Define the shape of the data that the server action will return

@@ -10,10 +10,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import Logout from "./logout";
-import { supabase } from "@/lib/supabase/client";
-import { useRouter } from "next/navigation";
-import { Button } from "./ui/button";
 export function NavSecondary({
   items,
   ...props

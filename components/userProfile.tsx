@@ -1,54 +1,29 @@
 "use client";
 import * as React from "react";
-import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
+
 import { getuserbyID, handleDeleteUser } from "@/hooks/usetopupRequest";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { useParams } from "next/navigation";
+
 import { Skeleton } from "./ui/skeleton";
 import { handleUpdateStatus } from "@/hooks/usetopupRequest";
-import Grid from "@mui/material/Grid";
-import { Separator } from "@radix-ui/react-separator";
+
 import { Card, CardContent } from "@/components/ui/card";
 
 import { topUpUserBalance } from "@/hooks/function";
-import { useTopUprequest } from "@/hooks/usetopupRequest";
 import { Topuprequest } from "@/components/topuprequest";
-import {
-  ColumnFiltersState,
-  flexRender,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  SortingState,
-  useReactTable,
-  VisibilityState,
-} from "@tanstack/react-table";
 import { handleUpdateStatusTopUp } from "@/hooks/usetopupRequest";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
+import { ChevronDown, MoreHorizontal } from "lucide-react";
 
 type Payment = {
   id: string;
@@ -121,13 +96,13 @@ export default function UserProfiel({ id }: Props) {
             <DropdownMenuContent className="bg-amber-900 text-amber-50 border-b-black">
               <DropdownMenuItem
                 onClick={() => {
-                  handleUpdateStatusTopUp(row.original.id, "Approved"),
-                    topUpUserBalance(
-                      "17d2e3de-b890-44b3-83d8-b8936306f8a6",
-                      row.original.user_id,
+                  handleUpdateStatusTopUp(row.original.id, "Approved");
+                  topUpUserBalance(
+                    "17d2e3de-b890-44b3-83d8-b8936306f8a6",
+                    row.original.user_id,
 
-                      row.original.amount
-                    );
+                    row.original.amount
+                  );
                 }}
                 className="capitalize text-right cursor-pointer hover:bg-amber-800"
               >
@@ -222,7 +197,13 @@ export default function UserProfiel({ id }: Props) {
       </div>
     );
   }
-  const InfoRow = ({ label, value }: { label: string; value: any }) => (
+  const InfoRow = ({
+    label,
+    value,
+  }: {
+    label: string;
+    value: string | number | null | undefined;
+  }) => (
     <div className="flex flex-col items-end">
       <span className="text-sm  ">{label}</span>
 

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase/client";
 
-export async function GET(req: Request) {
+export async function GET() {
   try {
     const { data, error } = await supabase
       .from("profiles")
@@ -34,10 +34,13 @@ export async function GET(req: Request) {
     }
 
     return NextResponse.json({ users: data }, { status: 200 });
-  } catch (err: any) {
-    return NextResponse.json(
-      { error: err.message || "Internal error" },
-      { status: 500 }
-    );
+  } catch (err: unknown) {
+    const message =
+      err instanceof Error ? err.message : "An unknown error occurred";
+
+    return new Response(JSON.stringify({ error: message }), {
+      headers: { "Content-Type": "application/json" },
+      status: 500,
+    });
   }
 }

@@ -64,11 +64,13 @@ export async function GET(
     };
 
     return NextResponse.json(combinedData, { status: 200 });
-  } catch (err: any) {
-    console.error("Internal Server Error:", err);
-    return NextResponse.json(
-      { error: err.message || "Internal Server Error" },
-      { status: 500 }
-    );
+  } catch (err: unknown) {
+    const message =
+      err instanceof Error ? err.message : "An unknown error occurred";
+
+    return new Response(JSON.stringify({ error: message }), {
+      headers: { "Content-Type": "application/json" },
+      status: 500,
+    });
   }
 }

@@ -15,7 +15,7 @@ export default function Session() {
         router.push("/auth"); // Redirect if not logged in
       }
       if (data.session) {
-        const { data: profile, error: profileError } = await supabase
+        const { data: profile } = await supabase
           .from("profiles")
           .select("*")
           .eq("id", data.session.user.id)

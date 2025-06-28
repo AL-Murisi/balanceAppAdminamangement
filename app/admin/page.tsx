@@ -3,9 +3,6 @@ import { ChartAreaInteractive } from "@/components/chart-area";
 import { DataTable } from "@/components/data-table";
 import { SectionCards } from "@/components/sectionCard";
 import data from "./data.json";
-import { useNewUsers, useTopUprequest } from "@/hooks/usetopupRequest";
-import Session from "@/lib/session";
-import { redirect } from "next/navigation";
 
 export default function Page() {
   // const { topup } = useTopUprequest();

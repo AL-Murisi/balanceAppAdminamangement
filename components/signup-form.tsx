@@ -2,7 +2,6 @@
 
 import { cn } from "@/lib/utils";
 
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -13,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 // import { revalidatePath } from "next/cache";
 import { supabase } from "@/lib/supabase/client";
@@ -25,9 +24,6 @@ export function SignUpForm({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
   //   const supabase = createClient();
   const handleSignUp = async () => {
     // type-casting here for convenience
@@ -89,10 +85,10 @@ export function SignUpForm({
                   onChange={(e) => setRepeatPassword(e.target.value)}
                 />
               </div>
-              {error && <p className="text-sm text-red-500">{error}</p>}
-              <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? "Creating an account..." : "Sign up"}
-              </Button>
+              {/* {error && <p className="text-sm text-red-500">{error}</p>}
+              {/* <Button type="submit" className="w-full" disabled={isLoading}>
+                { "Creating an account..." : "Sign up"}
+              </Button> */}
             </div>
             <div className="mt-4 text-center text-sm">
               Already have an account?{" "}

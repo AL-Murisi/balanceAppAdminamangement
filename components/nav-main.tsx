@@ -4,11 +4,9 @@ import { type LucideIcon } from "lucide-react";
 
 import {
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  useSidebar,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { ModeToggle } from "./toggole";
