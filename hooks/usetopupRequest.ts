@@ -1,7 +1,6 @@
 "use client";
 
 import axios from "axios";
-import { UserRound } from "lucide-react";
 import useSWR from "swr";
 
 type Payment = {
