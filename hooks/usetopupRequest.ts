@@ -1,6 +1,5 @@
 "use client";
 
-import axios from "axios";
 import useSWR from "swr";
 
 type Payment = {
@@ -54,7 +53,16 @@ type profile = {
 type amount = {
   amount: string | null;
 };
-const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+const fetcher = async (url: string) => {
+  const res = await fetch(url);
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(
+      error.message || "An error occurred while fetching the data."
+    );
+  }
+  return res.json();
+};
 export function useTopUprequest() {
   const { data, error, isLoading } = useSWR("/api/top-uprequests", fetcher);
 
