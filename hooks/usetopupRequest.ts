@@ -105,8 +105,6 @@ export function balance() {
   return { data, loading: isLoading };
 }
 export function getuserbyID(id: string) {
-  const fetcher = (url: string) => axios.get(url).then((res) => res.data);
-
   const { data, error, isLoading } = useSWR(`/api/usersdetails/${id}`, fetcher);
   // const users: UserRecord | null =
   //   Array.isArray(data?.users) &&
